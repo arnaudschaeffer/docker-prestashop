@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+# Adapt this lines with your container name and DB info
+container="dockerprestashop"
+user="prestashop"
+password="prestashop"
+dbname="prestashop"
+
+exec docker exec -it ${container}_db_1 bash -c "mysql -u${user} -p${password} ${dbname}"

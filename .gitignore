@@ -1,0 +1,8 @@
+.dumps/*.sql
+.dumps/*.sql.gz
+.mysql/
+*.env
+certs/*.crt
+certs/*.key
+www/*
+!www/.gitkeep

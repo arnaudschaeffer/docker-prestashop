@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+#
+# This script is meant to be run inside the DB container
+#
+# This is an example how to export your database
+
+DATE=`date '+%Y%m%d%H%M%S'`
+mysqldump -uprestashop -pprestashop prestashop | gzip > /dumps/prestashop-${DATE}.sql.gz
+

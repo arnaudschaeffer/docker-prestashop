@@ -1,0 +1,46 @@
+[user]
+  name = 
+  email = 
+
+[alias]
+  a = add
+  b = branch
+  c = commit
+  co = checkout      
+  d = diff
+  e = add --edit
+  f = fetch
+  g = grep
+  h = help
+  i = init
+  l = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+  ll = log --stat
+  m = merge
+  r = remote
+  s = status --branch --short
+  t = tag
+  w = whatchanged
+  st = status -sb
+  last = log -1 --stat
+  cl = clone
+  cp = cherry-pick
+  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+  unstage = reset HEAD --
+  br = branch
+  pr = pull --rebase
+[core]
+  excludesfile = ~/.gitignore
+  editor = vim
+  pager = less
+[color]
+  ui = always
+  status = auto
+  branch = auto
+  interactive = auto
+  diff = auto
+
+[merge]
+  tool = vimdiff
+
+[push]
+  default = upstream

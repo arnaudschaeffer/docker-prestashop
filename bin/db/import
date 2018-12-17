@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+#
+# This script is meant to be run inside the DB container
+#
+# This is an example how to import your dump
+
+zcat /dumps/your-dump.sql.gz | mysql -u 'root' -pPRESATSHOP prestashop
+
+# or for uncompressed dump
+# mysql -u root -pPRESTASHOP prestashop < /dumps/your-dump.sql

@@ -1,0 +1,10 @@
+# Redirect all traffic through HTTPS
+
+server {
+  listen 80;
+  server_name prestashop.local.com;
+
+  location / {
+    return 301 https://$host$request_uri;
+  }
+}

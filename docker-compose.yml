@@ -1,0 +1,50 @@
+version: '2'
+services:
+  db:
+    image: mariadb:10
+    ports:
+      - "127.0.0.1:3306:3306"
+    env_file:
+      - db.env
+    volumes:
+      - ./.mysql:/var/lib/mysql
+      - ./dumps:/dumps
+      - ./bin/db:/home
+
+  web:
+    build: images/web
+    ports:
+      - "80"
+    links:
+      - db
+      - mailcatcher
+    env_file:
+      - web.env
+    volumes:
+      - ./www:/var/www/html
+      - ./web/vhosts:/etc/apache2/sites-enabled
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    working_dir: /var/www/html
+
+  mailcatcher:
+    image: schickling/mailcatcher
+    env_file:
+      - mailcatcher.env
+    expose:
+      - "1080"
+
+  proxy:
+    image: jwilder/nginx-proxy
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./certs:/etc/nginx/certs:ro
+      - ./nginx/conf.d/prestashop.conf:/etc/nginx/conf.d/prestashop.conf
+      - ./web/vhosts:/etc/nginx/vhost.d
+
+networks:
+  default:
+    external:
+      name: nginx-proxy

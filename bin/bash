@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+#
+# How to run bash inside docker container
+
+# Adapt this line with your container name
+container="dockerprestashop"
+executable=$(basename $0)
+
+if [[ -z "$1" ]]; then
+    echo "Please specify the container [web | db | proxy]"
+    echo "Add an optional user (otherwise, you will be logged in root)"
+    exit
+fi
+
+if [[ -z "$2" ]]; then
+    docker exec -it ${container}_${1}_1 $executable
+    exit
+fi
+
+docker exec -it -u ${2} -- ${container}_${1}_1 $executable
